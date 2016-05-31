@@ -28,7 +28,7 @@ public class FibonacciSolver {
         }
     }
 
-    //This runtime will be much shorter, at worst O(n)
+    //This runtime will be significantly shorter
     public int amortizedFibonacci (int n) {
         System.out.println("amortizedFibonacci: processing for " + n);
         if (n < 1) {
