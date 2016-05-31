@@ -36,7 +36,7 @@ public class FibonacciSolver {
         } else {
             Integer nteger = new Integer(n);
             if (savedNumbersMap.containsKey(nteger)) {
-                return savedNumbersMap.get(nteger).intValue();
+                return savedNumbersMap.get(nteger);
             } else {
                 int fibonacciNumber = amortizedFibonacci(n - 1) + amortizedFibonacci(n - 2);
                 savedNumbersMap.put(nteger, fibonacciNumber);
