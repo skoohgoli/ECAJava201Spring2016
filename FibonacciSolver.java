@@ -34,6 +34,8 @@ public class FibonacciSolver {
         if (n < 1) {
             return 0;
         } else {
+            //We're going to calculate and store all fibonacci numbers less than n. That way, we don't have to recurse endlessly!
+            //Added bonus: if we ever call this function again, the runtime may only be O(1)
             Integer nteger = new Integer(n);
             if (savedNumbersMap.containsKey(nteger)) {
                 return savedNumbersMap.get(nteger);
@@ -52,6 +54,7 @@ public class FibonacciSolver {
         //Lets compare the difference in the length of output:
         System.out.println(solver.basicFibonacci(10)); //109 function calls
         System.out.println(solver.amortizedFibonacci(10)); //only 17 function calls!
+        System.out.println(solver.amortizedFibonacci(10)); //No recursion needed, since we already have the answer stored in memory
     }
 
 }
