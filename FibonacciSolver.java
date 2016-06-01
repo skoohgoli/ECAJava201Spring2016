@@ -1,4 +1,4 @@
-package com.skoohgoli.java201;
+package com.skoohgoli.java201.Lesson6;
 
 
 import java.util.HashMap;
