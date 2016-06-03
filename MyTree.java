@@ -1,25 +1,38 @@
 package com.skoohgoli.java201.Lesson6;
 
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
 public class MyTree {
-    public class Node {
+    public class TreeNode {
         String value;
-        Node left;
-        Node right;
+        TreeNode left;
+        TreeNode right;
 
-        public Node(String value) {
+        public TreeNode(String value) {
             this.value = value;
         }
     }
 
-    public boolean breadthFirstSearch(String value, Queue<Node> toVisit) {
+    private TreeNode headOfTree;
+
+    public MyTree(TreeNode head) {
+        this.headOfTree = head;
+    }
+
+    public boolean breadthFirstSearch(String value) {
+        Queue<TreeNode> toVisit = new LinkedList<>();
+        toVisit.add(headOfTree);
+        return breadthFirstSearch(value, toVisit);
+    }
+
+    private boolean breadthFirstSearch(String value, Queue<TreeNode> toVisit) {
         if (toVisit.isEmpty()) {
             return false;
         }
-        Node input = toVisit.remove();
-        if (input != null && input.value == value) {
+        TreeNode input = toVisit.remove();
+        if (input.value == value) {
             return true;
         } else {
             if (input.left  != null)  toVisit.add(input.left);
@@ -28,12 +41,18 @@ public class MyTree {
         }
     }
 
-    public boolean depthFirstSearch(String value, Stack<Node> toVisit) {
+    public boolean depthFirstSearch(String value) {
+        Stack<TreeNode> toVisit = new Stack<>();
+        toVisit.push(headOfTree);
+        return depthFirstSearch(value, toVisit);
+    }
+
+    private boolean depthFirstSearch(String value, Stack<TreeNode> toVisit) {
         if (toVisit.isEmpty()) {
             return false;
         }
-        Node input = toVisit.pop();
-        if (input != null && input.value == value) {
+        TreeNode input = toVisit.pop();
+        if (input.value == value) {
             return true;
         } else {
             if (input.left  != null)  toVisit.push(input.left);
