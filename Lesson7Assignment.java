@@ -1,9 +1,6 @@
 package com.skoohgoli.java201;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-
-public class SelectionSorter {
+public class Lesson7Assignment {
 
     public int[] iterativeSort(int[] input) {
         if (input == null) {
@@ -30,7 +27,9 @@ public class SelectionSorter {
         return input;
     }
 
-    public LinkedList<Integer> sort(LinkedList<Integer> input) {
+
+
+    public MyLinkedList linkedListSort(MyLinkedList input) {
         return null;
     }
 
@@ -52,7 +51,7 @@ public class SelectionSorter {
     }
 
     public static void main(String[] args) {
-        SelectionSorter sorter = new SelectionSorter();
+        Lesson7Assignment sorter = new Lesson7Assignment();
 
         int[] input = {98, 7654, 2, 3456, 66};
         int[] expected = {2, 66, 98, 3456, 7654};
@@ -68,13 +67,31 @@ public class SelectionSorter {
         }
 
 
-        LinkedList<Integer> linkedInput = new LinkedList<>();
-        linkedInput.addAll(Arrays.asList(98, 7654, 2, 3546, 66));
-        LinkedList<Integer> linkedResult = new LinkedList<>();
-        linkedResult.addAll(Arrays.asList(2, 66, 98, 3546, 7654));
-        result = sorter.recursiveSort(input);
-        if (result != expected) {
-            throw new RuntimeException("Array was not recursively sorted properly: " + result);
+        MyLinkedList linkedInput = new MyLinkedList();
+        linkedInput.add(new Node(98))
+                    .add(new Node(7654))
+                    .add(new Node(2))
+                    .add(new Node(3456))
+                    .add(new Node(66));
+
+        MyLinkedList linkedExpected = new MyLinkedList();
+        linkedExpected.add(new Node(2))
+                    .add(new Node(66))
+                    .add(new Node(98))
+                    .add(new Node(3456))
+                    .add(new Node(7654));
+
+        MyLinkedList linkedResult = sorter.linkedListSort(linkedInput);
+
+        Node resultNode = linkedResult.head;
+        Node expectedNode = linkedExpected.head;
+        while (resultNode != null && expectedNode != null) {
+            if (resultNode.value != expectedNode.value) {
+                throw new RuntimeException("List was not recursively sorted properly. Expected " + expectedNode.value
+                        + "but got " + resultNode.value);
+            }
+            resultNode = resultNode.next;
+            expectedNode = expectedNode.next;
         }
 
     }
