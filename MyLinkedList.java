@@ -10,7 +10,7 @@ public class MyLinkedList {
         } else {
             Node last = head;
             while (last.next != null) {
-                last = head.next;
+                last = last.next;
             }
             last.next = node;
         }
