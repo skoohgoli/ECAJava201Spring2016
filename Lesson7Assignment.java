@@ -61,7 +61,8 @@ public class Lesson7Assignment {
             throw new RuntimeException("Array was not iteratively sorted properly: " + result);
         }
 
-        result = sorter.recursiveSort(input);
+        int[] input2 = {98, 7654, 2, 3456, 66};
+        result = sorter.recursiveSort(input2);
         if (!isSame(expected, result)) {
             throw new RuntimeException("Array was not recursively sorted properly: " + result);
         }

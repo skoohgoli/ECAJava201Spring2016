@@ -12,6 +12,7 @@ public class Lesson8Assignment {
             return input;
         }
 
+        //Keep on splitting the case down to the smallest version (length 1)
         int[] left = mergeSort(Arrays.copyOfRange(input, 0, length/2));
         int[] right = mergeSort(Arrays.copyOfRange(input, length/2, length));
 
@@ -28,7 +29,8 @@ public class Lesson8Assignment {
         int[] mergedResult = new int[left.length + right.length];
         int mergedResultIndex = 0;
 
-        while (leftIndex < leftLength || rightIndex < rightLength) {
+        //The main merging. Step through the elements one at a time
+        while (leftIndex < leftLength && rightIndex < rightLength) {
             if (left[leftIndex] < right[rightIndex]) {
                 mergedResult[mergedResultIndex] = left[leftIndex];
                 leftIndex++;
@@ -36,11 +38,31 @@ public class Lesson8Assignment {
                 mergedResult[mergedResultIndex] = right[rightIndex];
                 rightIndex++;
             }
+            mergedResultIndex++;
+        }
+
+        //If there are any leftover elements in the array, merge them together
+        //This happens when the left array and the right array are not the same size.
+        if (leftIndex == leftLength) {
+            while (rightIndex < rightLength) {
+                mergedResult[mergedResultIndex] = right[rightIndex];
+                rightIndex++;
+                mergedResultIndex++;
+            }
+        }
+        if (rightIndex == rightLength) {
+            while (leftIndex < leftLength) {
+                mergedResult[mergedResultIndex] = left[leftIndex];
+                leftIndex++;
+                mergedResultIndex++;
+            }
         }
         return mergedResult;
     }
 
-    public int[] iterativeMergeSort(int[] input) {
+    public int[] inPlaceMergeSort(int[] input) {
+        //The public function should stay the same.
+        // You can create inner recursive functions though
         return null;
     }
 
@@ -72,11 +94,11 @@ public class Lesson8Assignment {
             throw new RuntimeException("Array was not recursively sorted properly: " + result);
         }
 
-        result = sorter.iterativeMergeSort(input);
+        int[] input2 = {98, 7654, 2, 3456, 66};
+        result = sorter.inPlaceMergeSort(input2);
         if (!isSame(expected, result)) {
             throw new RuntimeException("Array was not iteratively sorted properly: " + result);
         }
-
 
         MyLinkedList linkedInput = new MyLinkedList();
         linkedInput.add(new Node(98))
